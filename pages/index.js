@@ -2,7 +2,6 @@ import { MeetupList } from '../components/meetups/MeetupList.js';
 import { Layout } from '../components/layout/Layout';
 import { useEffect, useState } from 'react';
 
-
 const DUMMY_MEETUPS = [
 	{
 		id: 'm1',
@@ -20,7 +19,7 @@ const DUMMY_MEETUPS = [
 	},
 ];
 
- function HomePage(props) {
+function HomePage( props ) {
 
 	return (
 		<Layout>
@@ -29,12 +28,13 @@ const DUMMY_MEETUPS = [
 	);
 }
 
- export async function getStaticProps() {
+export async function getStaticProps() {
 	return {
 		props: {
-			meetups: DUMMY_MEETUPS
-		}
-	}
- }
+			meetups: DUMMY_MEETUPS,
+		},
+		revalidate: 1,
+	};
+}
 
 export default HomePage;
