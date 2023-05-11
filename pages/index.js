@@ -1,6 +1,4 @@
 import { MeetupList } from '../components/meetups/MeetupList.js';
-import { Layout } from '../components/layout/Layout';
-import { useEffect, useState } from 'react';
 
 const DUMMY_MEETUPS = [
 	{
@@ -22,9 +20,7 @@ const DUMMY_MEETUPS = [
 function HomePage( props ) {
 
 	return (
-		<Layout>
-			<MeetupList meetups={ props.meetups } />
-		</Layout>
+		<MeetupList meetups={ props.meetups } />
 	);
 }
 

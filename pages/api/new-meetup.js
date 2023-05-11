@@ -1,10 +1,23 @@
 //   /api/new-meetup
+import { MongoClient } from 'mongodb';
 
-function handler( req, res ) {
+async function handler( req, res ) {
 	if (req.method === 'POST') {
 		const data = req.body;
 
-		const { img, title, address, description } = data;
+		const client = await MongoClient.connect(
+			'mongodb+srv://churychevanataliia:mm5p5qSiTvguJijR@cluster0.sev1usk.mongodb.net/meetups?retryWrites=true&w=majority');
+		const db = client.db();
+
+		const meetupsCollection = db.collection('meetups');
+
+		const result = await meetupsCollection.insertOne({ data });
+
+		console.log(result);
+
+		client.close();
+
+		res.status(201).json({ message: 'Meetup inserted!' });
 	}
 }
 
